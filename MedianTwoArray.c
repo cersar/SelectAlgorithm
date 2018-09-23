@@ -1,4 +1,4 @@
-//《算法导论》9.3-7 寻找两个同样大小有序数组的中位数
+//《算法导论》9.3-8 寻找两个同样大小有序数组的中位数
 #include<stdio.h>
 #include<math.h>
 #include<assert.h>
