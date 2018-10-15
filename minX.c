@@ -25,14 +25,34 @@ int minX(int key, int a[], int low, int high) {
 	if (low > high) {
 		return low-1;
 	}
-	//当low<=high时,mid范围[low,high]
-	//当low=high时，mid=high
-	//当low=high或low=high-1时，mid=low
 	int mid = (low + high) / 2;
 	if (a[mid] >= key) {
 		return minX(key, a, low, mid-1);
 	}
 	else {
 		return minX(key, a, mid+1, high);
+	}
+}
+
+
+/*返回大于key最小值的索引,如不存在则返回high+1
+算法正确性：
+循环不变量: 
+1) a[low-1]<key
+2) a[high+1]>=key
+3) low-high<=1
+证明同上
+*/
+
+int maxX(int key, int a[], int low, int high) {
+	if (low > high) {
+		return high + 1;
+	}
+	int mid = (low + high) / 2;
+	if (a[mid] <= key) {
+		return maxX(key, a, mid + 1, high);
+	}
+	else {
+		return maxX(key, a, low, mid - 1);
 	}
 }
