@@ -11,7 +11,7 @@
 3)第k+1次迭代时，上一次迭代分两种情况：
 	a)a[mid(k)] >= key,这时high(k+1)=mid(k)-1,low(k+1)=low(k),
 	由于low(k+1)=low(k)，a[low(k)-1]<key,所以有a[low(k+1)-1]<key
-    由于high(k+1)=mid(k)-1,a[mid(k)] >= key,所以有a[high(k+1)+1]>=key
+        由于high(k+1)=mid(k)-1,a[mid(k)] >= key,所以有a[high(k+1)+1]>=key
 	由于low(k)<=high(k)，所以high(k+1)=mid(k)-1>=low(k)-1=low(k+1)-1，即low(k+1)-high(k+1)<=1
 	b)a[mid(k)] < key,这时low(k+1)=mid(k)+1,high(k+1)=high(k),同理可证
 
