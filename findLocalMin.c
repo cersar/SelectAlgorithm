@@ -16,7 +16,7 @@
 * 3)第k+1次迭代时，分两种情况：
 *	a)a[mid(k)] > a[mid(k) - 1]，此时low(k+1)=low(k)，high(k+1) = mid(k)-1，
 *	由于high(k)-low(k)>= 2，high(k+1) = mid(k)-1 >= low(k) = low(k+1)。
-*   a[low(k+1)]=a[low(k)]<a[low(k)-1]=a[low(k+1)-1],a[high(k+1)]=a[mid(k)-1]<a[mid(k)]=a[high(k+1)+1]
+*       a[low(k+1)]=a[low(k)]<a[low(k)-1]=a[low(k+1)-1],a[high(k+1)]=a[mid(k)-1]<a[mid(k)]=a[high(k+1)+1]
 *   b)a[mid(k)] > a[mid(k) + 1]，此时high(k+1)=high(k)，low(k+1) = mid(k)+1，
 *	由于high(k)-low(k)>= 2，low(k+1) = mid(k)+1 <= high(k) = high(k+1)。
 *	a[high(k+1)]=a[high(k)]<a[high(k)+1]=a[high(k+1)+1],a[low(k+1)]=a[mid(k)+1]<a[mid(k)]=a[low(k+1)-1]
