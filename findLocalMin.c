@@ -15,11 +15,11 @@
 * 2)假设前k次迭代循环不变量成立，即low(k)<=high(k),a[low(k)]<a[low(k)-1],a[high(k)]<a[high(k)+1]
 * 3)第k+1次迭代时，分两种情况：
 *	a)a[mid(k)] > a[mid(k) - 1]，此时low(k+1)=low(k)，high(k+1) = mid(k)-1，
-*	由于high(k)-low(k)>= 2，high(k+1) = mid(k)-1 >= low(k) = low(k+1)。
+*	  由于high(k)-low(k)>= 2，high(k+1) = mid(k)-1 >= low(k) = low(k+1)。
 *       a[low(k+1)]=a[low(k)]<a[low(k)-1]=a[low(k+1)-1],a[high(k+1)]=a[mid(k)-1]<a[mid(k)]=a[high(k+1)+1]
-*   b)a[mid(k)] > a[mid(k) + 1]，此时high(k+1)=high(k)，low(k+1) = mid(k)+1，
-*	由于high(k)-low(k)>= 2，low(k+1) = mid(k)+1 <= high(k) = high(k+1)。
-*	a[high(k+1)]=a[high(k)]<a[high(k)+1]=a[high(k+1)+1],a[low(k+1)]=a[mid(k)+1]<a[mid(k)]=a[low(k+1)-1]
+*       b)a[mid(k)] > a[mid(k) + 1]，此时high(k+1)=high(k)，low(k+1) = mid(k)+1，
+*	  由于high(k)-low(k)>= 2，low(k+1) = mid(k)+1 <= high(k) = high(k+1)。
+*	  a[high(k+1)]=a[high(k)]<a[high(k)+1]=a[high(k+1)+1],a[low(k+1)]=a[mid(k)+1]<a[mid(k)]=a[low(k+1)-1]
 *
 * 由于每次迭代都会导致[low(k),high(k)]的范围减小，故若迭代判断中a[mid] < a[mid - 1]&&a[mid] < a[mid + 1]不成立，
 * 则一定可以达到high(n)-low(n) < 2，使得循环可以正常终止，
