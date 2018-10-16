@@ -1,4 +1,4 @@
-/*返回小于key最大值的索引,如不存在则返回low-1
+/*返回小于key最大值的索引,如不存在则返回low-1。算法的时间复杂度稳定为O(lg(n))
 算法正确性：
 循环不变量: 
 1) a[low-1]<key
@@ -7,7 +7,7 @@
 证明：
 1)初始情况，low<=high, a[low-1]、a[high+1]不属于数组a,
 令为a[low-1]无穷小,a[high+1]无穷大，满足循环不变量
-2)假设前k次迭代(总迭代次数大于k)，有a[low(k)-1]<key、a[high(k)+1]<key、low(k)<=high(k)
+2)假设前k次迭代(总迭代次数大于k)，有a[low(k)-1]<key、a[high(k)+1]>key、low(k)<=high(k)
 3)第k+1次迭代时，上一次迭代分两种情况：
 	a)a[mid(k)] >= key,这时high(k+1)=mid(k)-1,low(k+1)=low(k),
 	由于low(k+1)=low(k)，a[low(k)-1]<key,所以有a[low(k+1)-1]<key
