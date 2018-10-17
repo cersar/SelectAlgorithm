@@ -135,7 +135,7 @@ bool validation(int** a, int M, int N, point *leftUp, point *rightDown, point mi
 *证明:T(N)=T(N/2)+cN,由主定理可知T(N)=O(N)
 */
 
-point findMatrixLocalMin(int** a,int M,int N, point leftUp, point rightDown) {
+point findLocalMin2D(int** a,int M,int N, point leftUp, point rightDown) {
 	point midPoint;
 	midPoint.row = (rightDown.row + leftUp.row) / 2;
 	midPoint.col = (rightDown.col + leftUp.col) / 2;
@@ -144,7 +144,7 @@ point findMatrixLocalMin(int** a,int M,int N, point leftUp, point rightDown) {
 		return minPoint;
 	}
 	else {
-		return findMatrixLocalMin(a, M, N, leftUp, rightDown);
+		return findLocalMin2D(a, M, N, leftUp, rightDown);
 	}
 }
 
@@ -165,7 +165,7 @@ int main() {
 	}
 	point leftUp = { 0,0 };
 	point rightDown = { M-1,N-1 };
-	point min = findMatrixLocalMin(a, M,N, leftUp,rightDown);
+	point min = findLocalMin2D(a, M,N, leftUp,rightDown);
 	printf("局部极小值坐标:(%d,%d)，值:%d", min.row, min.col, a[min.row][min.col]);
 	for (int i = 0; i < M; ++i) {
 		free(a[i]);
