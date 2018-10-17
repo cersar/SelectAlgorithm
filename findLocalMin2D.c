@@ -131,7 +131,7 @@ bool validation(int** a, int M, int N, point *leftUp, point *rightDown, point mi
 *
 *由于递归过程中，要么提前找到极值点返回，要么不断递归减少range，直到(rightDown(N).row - leftUp(N).row) <= 2||
 *(rightDown(N).col - leftUp(N).col) <= 2,由循环不变量：rightDown(N).row > leftUp(N).row+1 && rightDown(N).col > leftUp(N).col+1
-*可知至少减少到rightDown.col-leftUp(N).col=2或rightDown(N).row - leftUp(N).row = 2，此时，min(田(N))一定是一个极小值点
+*可知最少减少到rightDown.col-leftUp(N).col=2或rightDown(N).row - leftUp(N).row = 2，此时，min(田(N))一定是一个极小值点
 
 *时间复杂度T(N)=O(N)
 *证明:T(N)=T(N/2)+cN,由主定理可知T(N)=O(N)
