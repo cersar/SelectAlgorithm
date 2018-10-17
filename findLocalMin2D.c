@@ -1,13 +1,13 @@
 #include<stdio.h>
 #include<stdlib.h>
+#include<crtdbg.h>
 
 /* 寻找矩阵局部最小值，假设矩阵中元素互不相等，时间复杂度O(n)
 * 二维数组array(M,N)局部最小值定义：
-* 1)M<=3或N<=3时，min(array)为一个局部最小值
-* 2)M>3并且N>3时：
-*    a)如果i∈(0,M-1)且j∈(0,N-1),且array[i]<array[i-1]&&array[i]<array[i+1]，则array[i]为局部最小值
-*    a)如果i=0,且array[i]<array[i+1]，则array[i]为局部最小值
-*    a)如果i=N-1,且array[i]<array[i-1]，则array[i]为局部最小值
+* M>=3并且N>=3：
+*    1)如果i∈(0,M-1)且j∈(0,N-1),且array[i]<array[i-1]&&array[i]<array[i+1]，则array[i]为局部最小值
+*    2)如果i=0,且array[i]<array[i+1]，则array[i]为局部最小值
+*    3)如果i=N-1,且array[i]<array[i-1]，则array[i]为局部最小值
 */
 
 typedef struct point {
@@ -53,7 +53,7 @@ int Quadrant(point origin, point p) {
 	if (p.row < origin.row&&p.col < origin.col) {
 		return 1;
 	}
-	if(p.row < origin.row&&p.col > origin.col){
+	if (p.row < origin.row&&p.col > origin.col) {
 		return 2;
 	}
 	if (p.row > origin.row&&p.col < origin.col) {
@@ -67,17 +67,19 @@ int Quadrant(point origin, point p) {
 
 bool validation(int** a, int M, int N, point *leftUp, point *rightDown, point midPoint, point minPoint) {
 	point p;
-	if (minPoint.col != 0 && a[minPoint.row][minPoint.col-1] < a[minPoint.row][minPoint.col]) {
+	if (minPoint.col != 0 && a[minPoint.row][minPoint.col - 1] < a[minPoint.row][minPoint.col]) {
 		p.row = minPoint.row;
 		p.col = minPoint.col - 1;
-	}else if (minPoint.col != N-1 && a[minPoint.row][minPoint.col+1] < a[minPoint.row][minPoint.col]) {
+	}
+	else if (minPoint.col != N - 1 && a[minPoint.row][minPoint.col + 1] < a[minPoint.row][minPoint.col]) {
 		p.row = minPoint.row;
 		p.col = minPoint.col + 1;
-	}else if (minPoint.row != 0 && a[minPoint.row-1][minPoint.col] < a[minPoint.row][minPoint.col]) {
-		p.row = minPoint.row-1;
+	}
+	else if (minPoint.row != 0 && a[minPoint.row - 1][minPoint.col] < a[minPoint.row][minPoint.col]) {
+		p.row = minPoint.row - 1;
 		p.col = minPoint.col;
 	}
-	else if (minPoint.row != M - 1 && a[minPoint.row+1][minPoint.col] < a[minPoint.row][minPoint.col]) {
+	else if (minPoint.row != M - 1 && a[minPoint.row + 1][minPoint.col] < a[minPoint.row][minPoint.col]) {
 		p.row = minPoint.row + 1;
 		p.col = minPoint.col;
 	}
@@ -135,7 +137,7 @@ bool validation(int** a, int M, int N, point *leftUp, point *rightDown, point mi
 *证明:T(N)=T(N/2)+cN,由主定理可知T(N)=O(N)
 */
 
-point findLocalMin2D(int** a,int M,int N, point leftUp, point rightDown) {
+point findLocalMin2D(int** a, int M, int N, point leftUp, point rightDown) {
 	point midPoint;
 	midPoint.row = (rightDown.row + leftUp.row) / 2;
 	midPoint.col = (rightDown.col + leftUp.col) / 2;
@@ -151,10 +153,10 @@ point findLocalMin2D(int** a,int M,int N, point leftUp, point rightDown) {
 
 int main() {
 	int data[5][5] = { 10,6,5,7,17,
-					   4,2,16,1,18,
-					   14,9,8,11,19, 
-	                   12,3,15,13,20,
-	                   21,22,23,24,25};
+		4,2,16,1,18,
+		14,9,8,11,19,
+		12,3,15,13,20,
+		21,22,23,24,25 };
 	int M = 5, N = 5;
 	int **a = (int **)malloc(sizeof(int *) * M);
 	for (int i = 0; i < M; ++i) {
@@ -164,12 +166,13 @@ int main() {
 		}
 	}
 	point leftUp = { 0,0 };
-	point rightDown = { M-1,N-1 };
-	point min = findLocalMin2D(a, M,N, leftUp,rightDown);
-	printf("局部极小值坐标:(%d,%d)，值:%d", min.row, min.col, a[min.row][min.col]);
+	point rightDown = { M - 1,N - 1 };
+	point min = findLocalMin2D(a, M, N, leftUp, rightDown);
+	printf("局部极小值坐标:(%d,%d)，值:%d\n", min.row, min.col, a[min.row][min.col]);
 	for (int i = 0; i < M; ++i) {
 		free(a[i]);
 	}
 	free(a);
+	_CrtCheckMemory();
 	return 0;
 }
