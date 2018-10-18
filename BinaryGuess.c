@@ -1,7 +1,7 @@
 #include<stdio.h>
 #include<math.h>
 
-//猜测次数~1lgN
+//猜测次数~1lgN，前提是允许猜测范围为-N~2N的数字
 int binaryGuess1(int key, int N) {
 	int low = 1;
 	int high = N;
@@ -13,6 +13,7 @@ int binaryGuess1(int key, int N) {
 	//每一次迭代都有key∈[low,high]，且current+last = low+high，由于(current+last)/2=mid，可通过判断current是远离还是靠近，判断下一次的搜索区间：
 	//1）若current相较last远离，则取下一次取靠近last的half区间
 	//2）若current相较last靠近，则取下一次取靠近current的half区间
+	//current的范围是[-N,2N]可通过数学归纳法证明
 	//详细请见：https://blog.csdn.net/vmxplus/article/details/45874583
 	while (low<=high) {
 		//每一次current的更新算一次猜测
