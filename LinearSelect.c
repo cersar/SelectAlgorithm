@@ -1,4 +1,4 @@
-//《算法导论》最坏情况为线性的选择算法
+//《算法导论》9.3最坏情况为线性的选择算法
 #include<stdio.h>
 #include<math.h>
 #include<stdlib.h>
